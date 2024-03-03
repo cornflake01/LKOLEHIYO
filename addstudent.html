@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="addstudent.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <title>Add Student</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Add Student</h2>
+        <form id="createForm" class="student-form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div class="form-group">
+                <label for="lrn_number">LRN Number</label>
+                <input type="text" id="lrn_number" name="lrn_number">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="strand">Strand</label>
+                <input type="text" id="strand" name="strand">
+            </div>
+            <div class="form-group">
+                <label for="grade">Grade Level</label>
+                <input type="text" id="grade" name="grade">
+            </div>
+            <div class="form-group">
+                <label for="section">Section</label>
+                <input type="text" id="section" name="section">
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div class="button-group">
+                <button type="submit">Add Student</button>
+                <button id="backButton">Back to Dashboard</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"></script>
+    <script>
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID",
+            measurementId: "YOUR_MEASUREMENT_ID"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.firestore();
+
+        document.getElementById("createForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const name = document.getElementById("name").value;
+            const lrn = document.getElementById("lrn_number").value;
+            const email = document.getElementById("email").value;
+            const strand = document.getElementById("strand").value;
+            const grade = document.getElementById("grade").value;
+            const section = document.getElementById("section").value;
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            addStudent(name, lrn, email, strand, grade, section, username, password);
+        });
+
+        document.getElementById("backButton").addEventListener("click", function(event) {
+            event.preventDefault();
+            window.location.href = "dashboard.html"; // Change to your dashboard page URL
+        });
+
+        function addStudent(name, lrn, email, strand, grade, section, username, password) {
+            database.collection("studentInfo").add({
+                name: name,
+                lrn: lrn,
+                email: email,
+                strand: strand,
+                grade: grade,
+                section: section,
+                username: username,
+                password: password
+            })
+            .then(docRef => {
+                console.log("Student added with ID: ", docRef.id);
+                document.getElementById("createForm").reset();
+            })
+            .catch(error => {
+                console.error("Error adding student: ", error);
+            });
+        }
+    </script>
+</body>
+</html>

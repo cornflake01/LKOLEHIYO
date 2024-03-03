@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="addevent.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <title>Add Event</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Add School Events</h2>
+        <form id="createForm" class="event-form">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required><br><br>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required><br><br>
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
+            <input type="submit" value="Create Event">
+            <button onclick="goToDashboard()">Back to Dashboard</button>
+        </form>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"></script>
+    <script>
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID",
+            measurementId: "YOUR_MEASUREMENT_ID"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.firestore();
+
+        document.getElementById("createForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const title = document.getElementById("title").value;
+            const date = document.getElementById("date").value;
+            const description = document.getElementById("description").value;
+
+            addEvent(title, date, description);
+        });
+
+        function addEvent(title, date, description) {
+            database.collection("events").add({
+                title: title,
+                date: date,
+                description: description
+            })
+            .then(docRef => {
+                console.log("Event added with ID: ", docRef.id);
+                document.getElementById("createForm").reset();
+            })
+            .catch(error => {
+                console.error("Error adding event: ", error);
+            });
+        }
+
+        function goToDashboard() {
+            window.location.href = "dashboard.html";
+        }
+    </script>
+</body>
+</html>
