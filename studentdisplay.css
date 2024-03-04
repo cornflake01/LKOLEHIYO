@@ -1,22 +1,32 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+/* Body */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f4f4f4; /* Light gray background */
 }
 
+/* Container */
 .container {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0; /* Lighter border color */
+    border-radius: 10px; /* Rounded corners */
+    background-color: #fff; /* White background */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
 }
 
+/* Heading */
 h2 {
     text-align: center;
+    color: #333; /* Dark gray text color */
 }
 
+/* Student List Table */
 #studentList {
     margin-top: 20px;
     width: 100%;
@@ -24,37 +34,39 @@ h2 {
 }
 
 #studentList th, #studentList td {
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
+    padding: 12px; /* Increased padding for better spacing */
+    border-bottom: 1px solid #e0e0e0; /* Lighter border color */
     text-align: left;
 }
 
 #studentList th {
-    background-color: #007bff;
-    color: #fff;
+    background-color: #007bff; /* Blue header background color */
+    color: #fff; /* White text color */
 }
 
 #studentList tr:hover {
-    background-color: #f2f2f2;
+    background-color: #f0f0f0; /* Light gray background on hover */
 }
 
+/* Button Group */
 .button-group {
     margin-top: 20px;
     text-align: center;
 }
 
 button {
-    padding: 10px 20px;
+    padding: 12px 24px; /* Increased padding for better button size */
     font-size: 16px;
     cursor: pointer;
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 5px;
+    transition: background-color 0.3s ease; /* Smooth transition */
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Darker blue on hover */
 }
 
 button:focus {

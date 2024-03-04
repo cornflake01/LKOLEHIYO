@@ -36,20 +36,22 @@ input[type="text"],
 input[type="email"],
 input[type="password"],
 textarea,
-input[type="date"] {
+input[type="date"],
+input[type="submit"] {
     width: calc(100% - 22px);
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     transition: border-color 0.3s;
-    display: block; /* Make form elements occupy full width */
+    display: block;
 }
 
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
 textarea:focus,
-input[type="date"]:focus {
+input[type="date"]:focus,
+input[type="submit"]:focus {
     outline: none;
     border-color: #002145;
 }
@@ -61,25 +63,21 @@ input[type="date"]:focus {
 
 button,
 input[type="submit"] {
-    width: calc(49% - 5px); /* Set width to 49% of container width with some margin */
+    width: calc(49% - 5px);
     padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-}
-
-button {
     background-color: #002145;
     color: #fff;
 }
 
 input[type="submit"] {
     background-color: #003669;
-    color: #fff;
 }
 
 button:hover,
 input[type="submit"]:hover {
-    background-color: #001429; /* Darker color on hover */
+    background-color: #001429;
 }
